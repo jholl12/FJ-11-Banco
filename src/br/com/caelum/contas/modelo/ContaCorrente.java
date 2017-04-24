@@ -25,8 +25,13 @@ public class ContaCorrente extends Conta implements Tributavel {
 	 */
 	@Override
 	public boolean sacar(double valor) {
-		this.saldo -= (valor + 0.10);
+		super.sacar(valor + 0.10);
 		return true;
+	}
+	
+	@Override 
+	public void transferir(Conta destino, double valor) {
+		super.transferir(destino, valor + 0.10);
 	}
 
 	@Override

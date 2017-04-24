@@ -3,6 +3,8 @@
 //----------
 package br.com.caelum.contas.modelo;
 
+import br.com.caelum.contas.exceptions.SaldoInsuficienteException;
+
 /**
  * @description Classe responsavel por realizar as açoes de uma conta, contendo
  *              suas devidas regras de negocio
@@ -180,13 +182,16 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	 * @author Jhonata Santos
 	 */
 	public boolean sacar(double valor) {
-		if (this.saldo > 0 && valor <= this.saldo) {
-			this.saldo -= valor;
-			return true;
-		} else {
-			System.out.println("Saldo insuficiente para saque!");
-			return false;
+		if (this.saldo < valor) {
+			throw new SaldoInsuficienteException(valor);
 		}
+		
+		if(valor < 0){
+			throw new IllegalArgumentException("Você tentou sacar um valor negativo");
+		}
+
+		this.saldo -= valor;
+		return true;
 	}
 
 	/**
@@ -198,13 +203,16 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	 * @author Jhonata Santos
 	 */
 	public boolean depositar(double valor) {
-		if (valor > 0) {
-			this.saldo += valor;
-			return true;
-		} else {
-			System.out.println("Valor insuficiente para deposito!");
-			return false;
+		if (valor < 0) {
+			throw new IllegalArgumentException("Você tentou depositar um valor negativo");
 		}
+
+		if(valor == 0){
+			throw new IllegalArgumentException("Impossivel depositar R$" + valor);
+		}
+		
+		this.saldo += valor;
+		return true;
 	}
 
 	/**
@@ -216,20 +224,25 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	 * 
 	 * @author Jhonata Santos
 	 */
-	public boolean transferir(Conta destino, double valor) {
-		if (destino != null && valor != 0) {
-			boolean retirada = this.sacar(valor);
-			if (retirada) {
-				destino.depositar(valor);
-				return true;
-			}
-
-			System.out.println("Impossivel realizar a transferencia!");
-			return false;
-		} else {
-			System.out.println("Por favor informe um saldo maior que 0 e um destino!");
-			return false;
+	public void transferir(Conta destino, double valor) {
+		if (this.saldo < valor) {
+			throw new SaldoInsuficienteException(valor);
 		}
+
+		if (valor < 0) {
+			throw new IllegalArgumentException("Você tentou transferir um valor negativo");
+		}
+
+		if (valor == 0) {
+			throw new IllegalArgumentException("Impossivel transferir R$" + valor);
+		}
+
+		if (destino == null) {
+			throw new IllegalArgumentException("Conta de destino vazio!");
+		}
+
+		this.saldo -= valor;
+		destino.depositar(valor);
 	}
 	
 	/**

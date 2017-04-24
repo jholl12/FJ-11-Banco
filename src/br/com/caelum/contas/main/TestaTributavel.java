@@ -12,7 +12,6 @@ public class TestaTributavel {
 		
 		//testando polimorfismo
 		Tributavel t = cc;
-		System.out.println(t.getValorImposto());
-		
+		System.out.println(t.getValorImposto());		
 	}
 }

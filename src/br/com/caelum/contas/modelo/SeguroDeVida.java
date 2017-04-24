@@ -30,7 +30,7 @@ public class SeguroDeVida implements Tributavel {
 
 	@Override
 	public String getTipo() {
-		return null;
+		return "Seguro de Vida";
 	}
 	
 	public void setTitular(String titular) {
