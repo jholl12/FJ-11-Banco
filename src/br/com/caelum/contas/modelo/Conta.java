@@ -6,13 +6,14 @@ package br.com.caelum.contas.modelo;
 import br.com.caelum.contas.exceptions.SaldoInsuficienteException;
 
 /**
- * @description Classe responsavel por realizar as açoes de uma conta, contendo
+ *  Classe responsavel por realizar as açoes de uma conta, contendo
  *              suas devidas regras de negocio
- *              
+ * 
  * @author Jhonata Santos
  * @version 1.0
  */
-public abstract class Conta { //Classe abstrata genérica servindo como modelo para as classes filhas de especializacao
+public abstract class Conta { // Classe abstrata genérica servindo como modelo
+								// para as classes filhas de especializacao
 	// ---
 	// Atributos
 	// ----------
@@ -24,13 +25,12 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	private static int contador;
 
 	/**
-	 * @description Construtor Principal Completo
+	 *  Construtor Principal Completo
 	 * 
 	 * @param nome
 	 * @param agencia
 	 * @param numero
 	 * @param saldo
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public Conta(String nome, String agencia, String numero, double saldo) {
@@ -44,11 +44,10 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description Construtor Secundario Resumido
+	 * Construtor Secundario Resumido
 	 * 
 	 * @param agencia
 	 * @param numero
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public Conta(String agencia, String numero) {
@@ -57,7 +56,7 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description Construtor Vazio realizando apenas o contador de contas
+	 * Construtor Vazio realizando apenas o contador de contas
 	 * 
 	 * @author Jhonata Santos
 	 */
@@ -66,10 +65,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description GET Nome
+	 * GET Nome
 	 * 
 	 * @return o nome do titular
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public String getTitular() {
@@ -77,10 +75,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description GET Agencia
+	 * GET Agencia
 	 * 
 	 * @return o numero da agencia
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public String getAgencia() {
@@ -88,10 +85,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description GET Numero
+	 * GET Numero
 	 * 
 	 * @return o numero da conta
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public String getNumero() {
@@ -99,10 +95,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description GET Saldo
+	 * GET Saldo
 	 * 
 	 * @return o saldo bancario
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public double getSaldo() {
@@ -110,10 +105,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description GET Indentificador
+	 * GET Indentificador
 	 * 
-	 * @return o indentificador da conta (ID da conta)
-	 * 
+	 * @return o indentificador da conta (ID da conta) 
 	 * @author Jhonata Santos
 	 */
 	public int getIndentificador() {
@@ -121,19 +115,20 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description GET Tipo da Conta
+	 * GET Tipo da Conta
 	 * 
-	 * @return o tipo da conta
-	 * 
+	 * @return o tipo da conta 
 	 * @author Jhonata Santos
 	 */
-	public abstract String getTipo(); //Método abstrato generico sendo obrigatorio a implementacao dele nas classes filhas de acordo com a regra de negocio
+	public abstract String getTipo(); // Método abstrato generico sendo
+										// obrigatorio a implementacao dele nas
+										// classes filhas de acordo com a regra
+										// de negocio
 
 	/**
-	 * @description SET Nome
+	 * SET Nome
 	 * 
 	 * @param nome
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public void setTitular(String nome) {
@@ -141,10 +136,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description SET Agencia
+	 * SET Agencia
 	 * 
 	 * @param agencia
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public void setAgencia(String agencia) {
@@ -152,10 +146,9 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description SET Numero
+	 * SET Numero
 	 * 
 	 * @param numero
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public void setNumero(String numero) {
@@ -163,30 +156,49 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description Obtem os dados do estado atual da conta
+	 * Obtem os dados do estado atual da conta
 	 * 
 	 * @author Jhonata Santos
 	 */
 	@Override
 	public String toString() {
-		return "Nome: " + nome + "\nAgÃªncia: " + agencia + "\nNumero: " + numero + "\nSaldo: " + saldo
-				+ "\nIndentificador: " + indentificador + "\nTipo: " + getTipo();
+		this.nome = this.nome.toUpperCase();
+		return "Titular: " + this.nome + "\nAgência: " + agencia + "\nNumero: " + numero;
 	}
 
 	/**
-	 * @description Realiza uma operacao de saque do saldo da conta
+	 * Compara se uma conta é igual a alguma existente 
+	 * 
+	 * @return true se existir uma conta com agência e número igual
+	 * @author Jhonata Santos
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		Conta outraConta = (Conta) obj;
+		if (this.numero.equals(outraConta.numero) && this.agencia.equals(outraConta.agencia)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 *  Realiza uma operacao de saque do saldo da conta
 	 * 
 	 * @param valor a ser sacado
 	 * @return true se a operacao foi realizada com sucesso
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public boolean sacar(double valor) {
 		if (this.saldo < valor) {
 			throw new SaldoInsuficienteException(valor);
 		}
-		
-		if(valor < 0){
+
+		if (valor < 0) {
 			throw new IllegalArgumentException("Você tentou sacar um valor negativo");
 		}
 
@@ -195,11 +207,10 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 	}
 
 	/**
-	 * @description Realiza um deposito incluindo um valor no saldo da conta
+	 *  Realiza um deposito incluindo um valor no saldo da conta
 	 * 
 	 * @param valor que sera inserido na conta
 	 * @return true se a operacao foi realizada com sucesso
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public boolean depositar(double valor) {
@@ -207,21 +218,20 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 			throw new IllegalArgumentException("Você tentou depositar um valor negativo");
 		}
 
-		if(valor == 0){
+		if (valor == 0) {
 			throw new IllegalArgumentException("Impossivel depositar R$" + valor);
 		}
-		
+
 		this.saldo += valor;
 		return true;
 	}
 
 	/**
-	 * @description Realiza uma transferencia bancaria
+	 * Realiza uma transferencia bancaria
 	 * 
 	 * @param destino que recebera o valor
 	 * @param valor que sera transferido
 	 * @return true se a operacaoo foi realizada com sucesso
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public void transferir(Conta destino, double valor) {
@@ -244,12 +254,11 @@ public abstract class Conta { //Classe abstrata genérica servindo como modelo pa
 		this.saldo -= valor;
 		destino.depositar(valor);
 	}
-	
+
 	/**
-	 * @description Realiza o calculo de  rendimentos com base no saldo
+	 * Realiza o calculo de rendimentos com base no saldo
 	 * 
 	 * @return o valor do calculo de rendimentos
-	 * 
 	 * @author Jhonata Santos
 	 */
 	public double calcularRendimentos() {
