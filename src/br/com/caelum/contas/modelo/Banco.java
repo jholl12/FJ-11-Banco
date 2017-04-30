@@ -7,6 +7,7 @@ public class Banco {
 	private String agencia;
 	private String numero;
 	private Conta[] contas;
+	private Conta[] contasMax;
 	
 	public Banco(String nome, String agencia, String numero){
 		this.nome = nome;
@@ -46,7 +47,19 @@ public class Banco {
 	}
 	
 	public void adiciona(Conta conta){
-		int x = contas.length - 1;
+		for(int a = 0; a < contas.length; a ++){
+			if(contas[a] == null){
+				break;
+			}
+			
+			if(a == contas.length - 1){		
+				contasMax = new ContaCorrente[6];
+				for(int o = 0; o < contas.length; o++){
+					contasMax[o] = contas[o];
+				}
+			}
+		}
+		
 		for (int i = 0; i < contas.length; i++) {
 			if(contas[i] == null){
 				contas[i] = conta;
@@ -56,16 +69,5 @@ public class Banco {
 			} 
 		}
 		System.out.println("#########################");
-
-		
-//		for (int j = 0; j < contas.length; j++) {
-//			if(contas[j] == null){
-//				continue;
-//			}
-//			
-//			if(j == x){
-//				System.err.println("Array cheio!");
-//			}
-//		}
 	}
 }

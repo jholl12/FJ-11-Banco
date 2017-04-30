@@ -12,7 +12,7 @@ import br.com.caelum.contas.exceptions.SaldoInsuficienteException;
  * @author Jhonata Santos
  * @version 1.0
  */
-public abstract class Conta { // Classe abstrata genérica servindo como modelo
+public abstract class Conta implements Comparable<Conta>{ // Classe abstrata genérica servindo como modelo
 								// para as classes filhas de especializacao
 	// ---
 	// Atributos
@@ -162,7 +162,10 @@ public abstract class Conta { // Classe abstrata genérica servindo como modelo
 	 */
 	@Override
 	public String toString() {
-		this.nome = this.nome.toUpperCase();
+		if(nome != null){
+			nome = nome.toUpperCase();	
+		}
+		
 		return "Titular: " + this.nome + "\nAgência: " + agencia + "\nNumero: " + numero;
 	}
 
@@ -263,5 +266,14 @@ public abstract class Conta { // Classe abstrata genérica servindo como modelo
 	 */
 	public double calcularRendimentos() {
 		return this.saldo *= 0.1;
+	}
+	
+	@Override
+	public int compareTo(Conta outraConta) {
+		if(outraConta == null){
+			throw new NullPointerException("Objeto vazio!");
+		}
+		
+		return this.getTitular().compareTo(outraConta.getTitular());
 	}
 }
