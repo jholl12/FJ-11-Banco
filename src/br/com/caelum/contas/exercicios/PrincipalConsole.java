@@ -1,7 +1,7 @@
 //---
 //Pacote
 //----------
-package br.com.caelum.contas.main;
+package br.com.caelum.contas.exercicios;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

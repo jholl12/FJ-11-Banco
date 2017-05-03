@@ -14,7 +14,7 @@ import br.com.caelum.javafx.api.main.SistemaBancario;
  * @version 1.0
  *
  */
-public class PrincipalJar {
+public class PrincipalSistemaBancario {
 
 	/**
 	 * Metodo Principal

@@ -1,4 +1,4 @@
-package br.com.caelum.contas.main;
+package br.com.caelum.contas.exercicios;
 
 import br.com.caelum.contas.modelo.Banco;
 import br.com.caelum.contas.modelo.Conta;

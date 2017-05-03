@@ -1,4 +1,4 @@
-package br.com.caelum.contas.main;
+package br.com.caelum.contas.exercicios;
 
 public class TestaDivisao {
 
