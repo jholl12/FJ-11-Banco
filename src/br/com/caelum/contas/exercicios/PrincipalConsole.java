@@ -1,7 +1,14 @@
 //---
 //Pacote
 //----------
-package br.com.caelum.contas.main;
+package br.com.caelum.contas.exercicios;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+import br.com.caelum.contas.modelo.Conta;
+import br.com.caelum.contas.modelo.ContaCorrente;
+import br.com.caelum.contas.modelo.ContaPoupanca;
 
 /**
  * @description Classe responsável por fazer as chamadas dos métodos criados na
@@ -11,7 +18,7 @@ package br.com.caelum.contas.main;
  * @version 1.0
  *
  */
-public class PrincipalConsole {
+public class PrincipalConsole extends Object{
 	public static void main(String[] args) {
 		/*System.out.println("");
 		System.out.println("============ CONTA 1 ============");
@@ -41,5 +48,16 @@ public class PrincipalConsole {
 		System.out.println("--------------------------------");
 		System.out.println("Quantidade de contas criadas :" + Conta.getContador());
 		System.out.println("--------------------------------");*/
+		
+		String s = "fj-11";
+		s = s.replaceAll("1", "2");
+		System.out.println(s);
+		
+		StringBuilder teste = new StringBuilder("Teste ");
+		
+		for(int i = teste.length() - 1; i >= 0; i--){
+			System.out.print(teste.charAt(i));
+		}
+		
 	}
 }
