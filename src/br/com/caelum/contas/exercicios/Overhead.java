@@ -1,4 +1,4 @@
-package br.com.caelum.contas.main;
+package br.com.caelum.contas.exercicios;
 
 import java.util.ArrayList;
 import java.util.List;

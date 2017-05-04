@@ -3,6 +3,9 @@
 //----------
 package br.com.caelum.contas.modelo;
 
+//---
+//Imports
+//----------
 import br.com.caelum.contas.exceptions.SaldoInsuficienteException;
 
 /**
@@ -154,41 +157,7 @@ public abstract class Conta implements Comparable<Conta>{ // Classe abstrata gen
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-
-	/**
-	 * Obtem os dados do estado atual da conta
-	 * 
-	 * @author Jhonata Santos
-	 */
-	@Override
-	public String toString() {
-		if(nome != null){
-			nome = nome.toUpperCase();	
-		}
-		
-		return "Titular: " + this.nome + "\nAgência: " + agencia + "\nNumero: " + numero;
-	}
-
-	/**
-	 * Compara se uma conta é igual a alguma existente 
-	 * 
-	 * @return true se existir uma conta com agência e número igual
-	 * @author Jhonata Santos
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-
-		Conta outraConta = (Conta) obj;
-		if (this.numero.equals(outraConta.numero) && this.agencia.equals(outraConta.agencia)) {
-			return true;
-		}
-
-		return false;
-	}
-
+	
 	/**
 	 *  Realiza uma operacao de saque do saldo da conta
 	 * 
@@ -268,6 +237,27 @@ public abstract class Conta implements Comparable<Conta>{ // Classe abstrata gen
 		return this.saldo *= 0.1;
 	}
 	
+	//OVERRIDES
+	
+	/**
+	 * Obtem os dados do estado atual da conta
+	 * 
+	 * @author Jhonata Santos
+	 */
+	@Override
+	public String toString() {
+		if(nome != null){
+			nome = nome.toUpperCase();	
+		}
+		
+		return "Titular: " + this.nome + "\nAgência: " + agencia + "\nNumero: " + numero;
+	}
+	
+	/**
+	 * Compara se já existe um titular cadastrado
+	 * 
+	 * @author Jhonata Santos
+	 */
 	@Override
 	public int compareTo(Conta outraConta) {
 		if(outraConta == null){
@@ -275,5 +265,41 @@ public abstract class Conta implements Comparable<Conta>{ // Classe abstrata gen
 		}
 		
 		return this.getTitular().compareTo(outraConta.getTitular());
+	}
+	
+	/**
+	 * Cria um hashCode com base na agência e número
+	 * 
+	 * @author Jhonata Santos
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((agencia == null) ? 0 : agencia.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Conta other = (Conta) obj;
+		if (agencia == null) {
+			if (other.agencia != null)
+				return false;
+		} else if (!agencia.equals(other.agencia))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		return true;
 	}
 }
