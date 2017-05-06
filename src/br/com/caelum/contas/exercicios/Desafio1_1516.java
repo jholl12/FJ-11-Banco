@@ -1,40 +1,26 @@
 package br.com.caelum.contas.exercicios;
 
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Desafio1516 implements Comparable<Integer>{
+public class Desafio1_1516 {
 	static Set<Integer> numeros;
 	
 	public static void main(String[] args) {
-		numeros = new TreeSet<>();
+		numeros = new TreeSet<Integer>();
 		
 		for (int i = 0; i <= 1000; i++) {
 			numeros.add(i);
 		}
 		
-		//Collections.sort(numeros);
+		numeros = ((TreeSet<Integer>) numeros).descendingSet();
 		
 		Iterator<Integer> iterator = numeros.iterator();
 		while(iterator.hasNext()){
 			System.out.println(iterator.next());
 		}
 	}
-
-	@Override
-	public int compareTo(Integer o) {
-//		if(){
-//			return -1;
-//		}
-//		
-//		if(){
-//			return 1;
-//		}
-		
-		return 0;
-	}
-
 }
